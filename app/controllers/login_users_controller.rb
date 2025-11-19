@@ -28,7 +28,7 @@ class LoginUsersController < ApplicationController
   def create
     @login_user = LoginUser.new(login_user_params)
     if @login_user.save
-      redirect_to login_users_path, notice: 'ユーザーを登録しました。'
+      redirect_to login_users_path, notice: "ユーザーを登録しました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class LoginUsersController < ApplicationController
   # 更新
   def update
     if @login_user.update(login_user_params)
-      redirect_to login_users_path, notice: 'ユーザーを更新しました。'
+      redirect_to login_users_path, notice: "ユーザーを更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,9 +54,9 @@ class LoginUsersController < ApplicationController
   # 削除
   def destroy
     if @login_user.destroy
-      redirect_to login_users_path, notice: 'ユーザーを削除しました。'
+      redirect_to login_users_path, notice: "ユーザーを削除しました。"
     else
-      redirect_to login_users_path, alert: '削除に失敗しました。'
+      redirect_to login_users_path, alert: "削除に失敗しました。"
     end
   end
 

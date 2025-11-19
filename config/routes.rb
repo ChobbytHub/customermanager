@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   get "passwords/update"
   get "menu", to: "menu#index"
   # ログイン・セッション
-  get    'login',  to: 'sessions#new'
-  post   'login',  to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  get    "login",  to: "sessions#new"
+  post   "login",  to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
 
   # パスワード変更
-  get  'password/edit', to: 'passwords#edit',   as: :edit_password
-  patch 'password',     to: 'passwords#update', as: :update_password
+  get "password/edit", to: "passwords#edit",   as: :edit_password
+  patch "password",     to: "passwords#update", as: :update_password
 
   # ユーザー管理
   resources :login_users do
@@ -31,5 +31,5 @@ Rails.application.routes.draw do
   end
 
   # ルート
-  root 'sessions#new'
+  root "sessions#new"
 end
