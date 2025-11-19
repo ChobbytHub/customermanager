@@ -28,10 +28,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_19_020437) do
 
   create_table "login_users", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
     t.string "login", null: false
     t.integer "lvl"
     t.string "name", null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
     t.datetime "updated_at", null: false
     t.index ["login"], name: "index_login_users_on_login", unique: true
   end
