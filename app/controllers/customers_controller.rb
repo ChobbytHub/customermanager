@@ -32,9 +32,9 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      redirect_to customers_path, notice: '顧客を登録しました。'
+      redirect_to customers_path, notice: "顧客を登録しました。"
     else
-      flash.now[:alert] = '登録に失敗しました。'
+      flash.now[:alert] = "登録に失敗しました。"
       render :new, status: :unprocessable_entity
     end
   end
@@ -46,9 +46,9 @@ class CustomersController < ApplicationController
   # 更新
   def update
     if @customer.update(customer_params)
-      redirect_to customers_path, notice: '顧客情報を更新しました。'
+      redirect_to customers_path, notice: "顧客情報を更新しました。"
     else
-      flash.now[:alert] = '更新に失敗しました。'
+      flash.now[:alert] = "更新に失敗しました。"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -60,9 +60,9 @@ class CustomersController < ApplicationController
   # 削除
   def destroy
     if @customer.destroy
-      redirect_to customers_path, notice: '顧客を削除しました。'
+      redirect_to customers_path, notice: "顧客を削除しました。"
     else
-      redirect_to customers_path, alert: '削除に失敗しました。'
+      redirect_to customers_path, alert: "削除に失敗しました。"
     end
   end
 
