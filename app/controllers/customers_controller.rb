@@ -13,10 +13,10 @@ class CustomersController < ApplicationController
   # 一覧（検索対応）
   def index
     @customers = if params[:name].present?
-                   Customer.where("name ILIKE ?", "%#{params[:name]}%")
-                 else
-                   Customer.all
-                 end
+      Customer.where("name ILIKE ?", "%#{params[:name]}%")
+    else
+      Customer.all
+    end
   end
 
   # 詳細
