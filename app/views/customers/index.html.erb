@@ -1,0 +1,46 @@
+<h1>顧客一覧</h1>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>郵便番号</th>
+      <th>住所1</th>
+      <th>住所2</th>
+      <% if admin? || customer_manager? %>
+        <th>電話番号</th>
+        <th>FAX番号</th>
+        <th>メール</th>
+        <th>操作</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= customer.zip %></td>
+        <td><%= customer.address1 %></td>
+        <td><%= customer.address2 %></td>
+
+        <% if admin? || customer_manager? %>
+          <td><%= customer.tel %></td>
+          <td><%= customer.fax %></td>
+          <td><%= customer.email %></td>
+          <td>
+            <%= link_to "詳細", customer_path(customer) %> |
+            <%= link_to "編集", edit_customer_path(customer) %> |
+            <%= link_to "削除", delete_confirm_customer_path(customer) %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if admin? || customer_manager? %>
+  <%= link_to "新規登録", new_customer_path %>
+<% end %>
+
+<%= link_to "検索画面に戻る", search_customers_path %>

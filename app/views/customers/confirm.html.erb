@@ -1,0 +1,14 @@
+<h1>顧客情報確認</h1>
+
+<p>氏名: <%= @customer.name %></p>
+<p>郵便番号: <%= @customer.zip %></p>
+<p>住所1: <%= @customer.address1 %></p>
+<p>住所2: <%= @customer.address2 %></p>
+<p>電話番号: <%= @customer.tel %></p>
+<p>FAX番号: <%= @customer.fax %></p>
+<p>メール: <%= @customer.email %></p>
+
+<%= form_with model: @customer, url: @customer.new_record? ? customers_path : customer_path(@customer), method: @customer.new_record? ? :post : :patch, local: true do |f| %>
+  <%= f.submit "確定" %>
+<% end %>
+<%= link_to "キャンセル", @customer.new_record? ? new_customer_path : edit_customer_path(@customer) %>

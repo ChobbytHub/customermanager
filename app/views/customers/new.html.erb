@@ -1,0 +1,42 @@
+<h1><%= @customer.new_record? ? '新規登録' : '顧客情報編集' %></h1>
+
+<%= form_with(model: @customer, local: true) do |f| %>
+  <p>
+    <%= f.label :name, '氏名' %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :zip, '郵便番号' %><br>
+    <%= f.text_field :zip %>
+  </p>
+
+  <p>
+    <%= f.label :address1, '住所1' %><br>
+    <%= f.text_field :address1 %>
+  </p>
+
+  <p>
+    <%= f.label :address2, '住所2' %><br>
+    <%= f.text_field :address2 %>
+  </p>
+
+  <p>
+    <%= f.label :tel, '電話番号' %><br>
+    <%= f.text_field :tel %>
+  </p>
+
+  <p>
+    <%= f.label :fax, 'FAX' %><br>
+    <%= f.text_field :fax %>
+  </p>
+
+  <p>
+    <%= f.label :email, 'メール' %><br>
+    <%= f.text_field :email %>
+  </p>
+
+  <%= f.submit @customer.new_record? ? '登録' : '更新', class: 'btn btn-primary' %>
+<% end %>
+
+<%= link_to '一覧に戻る', customers_path %>

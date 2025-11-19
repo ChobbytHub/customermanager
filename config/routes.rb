@@ -1,14 +1,35 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "menu/index"
+  get "passwords/edit"
+  get "passwords/update"
+  get "menu", to: "menu#index"
+  # ログイン・セッション
+  get    'login',  to: 'sessions#new'
+  post   'login',  to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # パスワード変更
+  get  'password/edit', to: 'passwords#edit',   as: :edit_password
+  patch 'password',     to: 'passwords#update', as: :update_password
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # ユーザー管理
+  resources :login_users do
+    member do
+      get :delete_confirm # 削除確認画面
+    end
+  end
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # 顧客管理
+  resources :customers do
+    collection do
+      get :search  # 検索画面
+    end
+    member do
+      get :confirm       # 新規登録/編集確認画面
+      get :delete_confirm # 削除確認画面
+    end
+  end
+
+  # ルート
+  root 'sessions#new'
 end

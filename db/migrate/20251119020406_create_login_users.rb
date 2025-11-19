@@ -1,10 +1,11 @@
 class CreateLoginUsers < ActiveRecord::Migration[8.1]
   def change
     create_table :login_users do |t|
-      t.string :login
+      t.string :login, null: false
       t.integer :lvl
-      t.string :name
-      t.string :password_digest
+      t.string :name, null: false
+      t.string :password_digest, null: false
+      t.datetime :deleted_at # 論理削除用
 
       t.timestamps
     end

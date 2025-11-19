@@ -1,0 +1,32 @@
+<h1>ユーザー一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ログインID</th>
+      <th>名前</th>
+      <th>権限</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @login_users.each do |user| %>
+      <tr>
+        <td><%= user.login %></td>
+        <td><%= user.name %></td>
+        <td>
+          <%= {1 => "管理者", 2 => "顧客管理者", 3 => "一般従業員"}[user.lvl] || "不明" %>
+        </td>
+        <td>
+          <%= link_to "編集", edit_login_user_path(user) %> |
+          <%= link_to "削除", delete_confirm_login_user_path(user) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "新規登録", new_login_user_path %> |
+  <%= link_to "メニューに戻る", menu_path %>
+</p>

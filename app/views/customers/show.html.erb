@@ -1,0 +1,12 @@
+<h1>顧客詳細</h1>
+
+<p><strong>氏名:</strong> <%= @customer.name %></p>
+<p><strong>郵便番号:</strong> <%= @customer.zip %></p>
+<p><strong>住所1:</strong> <%= @customer.address1 %></p>
+<p><strong>住所2:</strong> <%= @customer.address2 %></p>
+<p><strong>電話番号:</strong> <%= @customer.tel %></p>
+<p><strong>FAX:</strong> <%= @customer.fax %></p>
+<p><strong>メール:</strong> <%= @customer.email %></p>
+
+<%= link_to '編集', edit_customer_path(@customer) %> |
+<%= link_to '一覧に戻る', customers_path %>

@@ -1,0 +1,16 @@
+<h1>メニュー</h1>
+
+<ul>
+  <% if admin? %>
+    <li><%= link_to "ユーザー管理", login_users_path %></li>
+  <% end %>
+
+  <% if admin? || customer_manager? %>
+    <li><%= link_to "顧客管理", search_customers_path %></li>
+  <% else %>
+    <li><%= link_to "顧客閲覧", search_customers_path %></li>
+  <% end %>
+
+  <li><%= link_to "パスワード変更", edit_password_path %></li>
+  <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+</ul>

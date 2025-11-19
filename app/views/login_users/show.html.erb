@@ -1,0 +1,14 @@
+<h1>ユーザー詳細</h1>
+
+<p>
+  <strong>ログインID:</strong> <%= @login_user.login %>
+</p>
+<p>
+  <strong>名前:</strong> <%= @login_user.name %>
+</p>
+<p>
+  <strong>権限レベル:</strong> <%= @login_user.lvl %>
+</p>
+
+<%= link_to '編集', edit_login_user_path(@login_user) %> |
+<%= link_to '一覧に戻る', login_users_path %>

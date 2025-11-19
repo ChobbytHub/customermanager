@@ -20,7 +20,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_19_020437) do
     t.datetime "created_at", null: false
     t.string "email"
     t.string "fax"
-    t.string "name"
+    t.string "name", null: false
     t.string "tel"
     t.datetime "updated_at", null: false
     t.string "zip"
@@ -28,9 +28,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_19_020437) do
 
   create_table "login_users", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "login"
+    t.string "login", null: false
     t.integer "lvl"
-    t.string "name"
+    t.string "name", null: false
     t.string "password_digest"
     t.datetime "updated_at", null: false
     t.index ["login"], name: "index_login_users_on_login", unique: true

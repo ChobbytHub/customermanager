@@ -1,0 +1,8 @@
+<h1>ユーザー削除確認</h1>
+
+<p>本当に以下のユーザーを削除しますか？</p>
+<p>ログインID: <%= @login_user.login %></p>
+<p>名前: <%= @login_user.name %></p>
+
+<%= button_to "削除する", login_user_path(@login_user), method: :delete %>
+<%= link_to "キャンセル", login_users_path %>
