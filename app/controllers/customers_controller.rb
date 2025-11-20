@@ -1,14 +1,8 @@
 class CustomersController < ApplicationController
   before_action :require_login
-  before_action :check_access, only: %i[new create edit update destroy]
-  before_action :set_customer, only: %i[show edit update destroy]
-
-  # 権限チェック
-  def check_access
-    unless admin? || customer_manager?
-      redirect_to customers_path, alert: "権限がありません"
-    end
-  end
+  before_action :check_access
+  before_action :set_customer, if: -> { %w[show edit update destroy].include?(action_name) }
+  before_action :set_return_to, only: %i[new edit delete_confirm]
 
   # 一覧（検索対応）
   def index
@@ -71,6 +65,20 @@ class CustomersController < ApplicationController
 
   def set_customer
     @customer = Customer.find(params[:id])
+  end
+
+  def set_return_to
+    # params[:return_to] が存在し、"/customers" で始まる場合のみ有効
+    @return_to = params[:return_to] if params[:return_to].present? && params[:return_to].start_with?("/customers")
+  end
+
+  # 権限チェック
+  def check_access
+    if %w[new create edit update destroy].include?(action_name)
+      unless admin? || customer_manager?
+        redirect_to customers_path, alert: "権限がありません"
+      end
+    end
   end
 
   def customer_params

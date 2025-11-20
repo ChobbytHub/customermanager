@@ -73,4 +73,4 @@
   <%= f.submit @customer.new_record? ? '登録' : '更新', class: 'btn btn-primary' %>
 <% end %>
 
-<%= link_to "キャンセル", params[:return_to].presence || customers_path %>
+<%= link_to "キャンセル", @return_to.presence || customers_path %>
