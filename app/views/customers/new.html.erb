@@ -12,7 +12,7 @@
 <% end %>
 
 <%= form_with(model: @customer, local: true) do |f| %>
-  <%= hidden_field_tag :return_to, params[:return_to] %>
+  <%= hidden_field_tag :return_to, @return_to %>
 
   <p>
     <%= f.label :name, '氏名' %><br>
