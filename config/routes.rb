@@ -25,7 +25,6 @@ Rails.application.routes.draw do
       get :search  # 検索画面
     end
     member do
-      get :confirm       # 新規登録/編集確認画面
       get :delete_confirm # 削除確認画面
     end
   end

@@ -1,42 +1,76 @@
 <h1><%= @customer.new_record? ? '新規登録' : '顧客情報編集' %></h1>
 
+<% if @customer.errors.any? %>
+  <div class="alert alert-danger">
+    <h2><%= pluralize(@customer.errors.count, "件のエラー") %>があります:</h2>
+    <ul>
+      <% @customer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(model: @customer, local: true) do |f| %>
+  <%= hidden_field_tag :return_to, params[:return_to] %>
+
   <p>
     <%= f.label :name, '氏名' %><br>
     <%= f.text_field :name %>
+    <% if @customer.errors[:name].any? %>
+      <br><span style="color:red;"><%= @customer.errors[:name].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :zip, '郵便番号' %><br>
     <%= f.text_field :zip %>
+    <% if @customer.errors[:zip].any? %>
+      <br><span style="color:red;"><%= @customer.errors[:zip].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :address1, '住所1' %><br>
     <%= f.text_field :address1 %>
+    <% if @customer.errors[:address1].any? %>
+      <br><span style="color:red;"><%= @customer.errors[:address1].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :address2, '住所2' %><br>
     <%= f.text_field :address2 %>
+    <% if @customer.errors[:address2].any? %>
+      <br><span class="text-danger"><%= @customer.errors[:address2].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :tel, '電話番号' %><br>
     <%= f.text_field :tel %>
+    <% if @customer.errors[:tel].any? %>
+      <br><span style="color:red;"><%= @customer.errors[:tel].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :fax, 'FAX' %><br>
     <%= f.text_field :fax %>
+    <% if @customer.errors[:fax].any? %>
+      <br><span style="color:red;"><%= @customer.errors[:fax].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :email, 'メール' %><br>
     <%= f.text_field :email %>
+    <% if @customer.errors[:email].any? %>
+      <br><span style="color:red;"><%= @customer.errors[:email].join(", ") %></span>
+    <% end %>
   </p>
 
   <%= f.submit @customer.new_record? ? '登録' : '更新', class: 'btn btn-primary' %>
 <% end %>
 
-<%= link_to '一覧に戻る', customers_path %>
+<%= link_to "キャンセル", params[:return_to].presence || customers_path %>

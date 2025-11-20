@@ -46,7 +46,7 @@ class CustomersController < ApplicationController
   # 更新
   def update
     if @customer.update(customer_params)
-      redirect_to customers_path, notice: "顧客情報を更新しました。"
+      redirect_to(params[:return_to].presence || customers_path(request.query_parameters), notice: "顧客情報を更新しました。")
     else
       flash.now[:alert] = "更新に失敗しました。"
       render :edit, status: :unprocessable_entity
@@ -55,6 +55,7 @@ class CustomersController < ApplicationController
 
   # 削除確認画面
   def delete_confirm
+    @customer = Customer.find(params[:id])
   end
 
   # 削除

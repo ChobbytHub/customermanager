@@ -4,5 +4,5 @@
 <p>氏名: <%= @customer.name %></p>
 <p>住所: <%= @customer.address1 %> <%= @customer.address2 %></p>
 
-<%= button_to "削除する", customer_path(@customer), method: :delete %>
-<%= link_to "キャンセル", customers_path %>
+<%= button_to "削除する", customer_path(@customer, request.query_parameters), method: :delete %>
+<%= link_to "キャンセル", params[:return_to] %>

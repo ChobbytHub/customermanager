@@ -15,26 +15,41 @@
   <p>
     <%= f.label :login, "ログインID" %><br>
     <%= f.text_field :login %>
+    <% if @login_user.errors[:login].any? %>
+      <br><span style="color:red;"><%= @login_user.errors[:login].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :name, "名前" %><br>
     <%= f.text_field :name %>
+    <% if @login_user.errors[:name].any? %>
+      <br><span style="color:red;"><%= @login_user.errors[:name].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :lvl, "権限レベル" %><br>
     <%= f.select :lvl, [["管理者", 1], ["顧客管理者", 2], ["一般従業員", 3]] %>
+    <% if @login_user.errors[:lvl].any? %>
+      <br><span style="color:red;"><%= @login_user.errors[:lvl].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :password %><br>
     <%= f.password_field :password %>
+    <% if @login_user.errors[:password].any? %>
+      <br><span style="color:red;"><%= @login_user.errors[:password].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
+    <% if @login_user.errors[:password_confirmation].any? %>
+      <br><span style="color:red;"><%= @login_user.errors[:password_confirmation].join(", ") %></span>
+    <% end %>
   </p>
 
   <p>
