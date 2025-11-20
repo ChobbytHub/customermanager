@@ -68,8 +68,11 @@ class CustomersController < ApplicationController
   end
 
   def set_return_to
-    # params[:return_to] が存在し、"/customers" で始まる場合のみ有効
-    @return_to = params[:return_to] if params[:return_to].present? && params[:return_to].start_with?("/customers")
+    return unless params[:return_to].present?
+    uri = URI.parse(params[:return_to]) rescue nil
+    if uri && uri.path.start_with?("/customers")
+      @return_to = uri.path
+    end
   end
 
   # 権限チェック
